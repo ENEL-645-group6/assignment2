@@ -10,6 +10,7 @@ The code is designed to automatically check for GPU availability and use it if a
 1. Clone the repository
 2. Download the datasets and place them in the project root
    - Dataset location on TALC: `/work/TALC/enel645_2025w/garbage_data`
+   - Dataset size is about 15GB
 3. Update the dataset path in `ENEL645_group6_a2_garbage_model_train.py`
 4. Run `ENEL645_group6_a2_garbage_model_train.py` to get best_model.pth
 5. Run `ENEL645_group6_a2_garbage_model_test.py` to get the results
