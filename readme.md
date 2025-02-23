@@ -1,5 +1,37 @@
 # Garbage Classification with Image and Text Features
 
+## General Workflow
+Get dataset → Run ENEL645_group6_a2_garbage_model_train.py to get best_model.pth → Run ENEL645_group6_a2_garbage_model_test.py to get the results
+
+## Running Locally
+1. Clone the repository
+2. Download the datasets and place them in the project root
+   - Dataset location on TALC: `/work/TALC/enel645_2025w/garbage_data`
+3. Update the dataset path in `ENEL645_group6_a2_garbage_model_train.py`
+4. Run `ENEL645_group6_a2_garbage_model_train.py` to get best_model.pth
+5. Run `ENEL645_group6_a2_garbage_model_test.py` to get the results
+
+### Expected Directory Structure
+```
+.
+├── CVPR_2024_dataset_Test
+├── CVPR_2024_dataset_Train
+├── CVPR_2024_dataset_Val
+├── ENEL645_group6_a2_garbage_model_test.py
+├── ENEL645_group6_a2_garbage_model_train.py
+├── __pycache__
+└── garbage_ML_test.py
+```
+
+## Running on TALC
+1. Copy code from `ENEL645_group6_a2_garbage_model_train.py` and `ENEL645_group6_a2_garbage_model_test.py` to TALC
+2. Update the dataset path in `ENEL645_group6_a2_garbage_model_train.py`
+   - Dataset location on TALC: `/work/TALC/enel645_2025w/garbage_data`
+3. Create `.slurm` file to run the `ENEL645_group6_a2_garbage_model_train.py`
+4. Run `ENEL645_group6_a2_garbage_model_train.py` to get best_model.pth
+5. Create `.slurm` file to run the `ENEL645_group6_a2_garbage_model_test.py`
+6. Run `ENEL645_group6_a2_garbage_model_test.py` to get the results
+
 A multimodal deep learning model that classifies garbage images using both visual features and textual information from filenames.
 
 ## Prerequisites
