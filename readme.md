@@ -4,6 +4,9 @@
 Get dataset → Run ENEL645_group6_a2_garbage_model_train.py to get best_model.pth → Run ENEL645_group6_a2_garbage_model_test.py to get the results
 
 ## Running Locally
+
+The code is designed to automatically check for GPU availability and use it if available. Otherwise, it will use MPS (Apple Silicon) if available. Otherwise, it will use CPU.
+
 1. Clone the repository
 2. Download the datasets and place them in the project root
    - Dataset location on TALC: `/work/TALC/enel645_2025w/garbage_data`
