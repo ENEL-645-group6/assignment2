@@ -2,5 +2,5 @@ CVPR_2024_dataset_Test/
 CVPR_2024_dataset_Train/
 CVPR_2024_dataset_Val/
 best_model.pth
-
+tutorial_code/text_only_best_model.pth
 
