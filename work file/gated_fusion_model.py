@@ -34,7 +34,7 @@ transform = {
     ]),
 }
 
-class ResNetMultimodalClassifier(nn.Module):
+class GatedFusionClassifier(nn.Module):
     def __init__(self, num_classes=4):
         super().__init__()
         
@@ -50,14 +50,25 @@ class ResNetMultimodalClassifier(nn.Module):
         for param in self.distilbert.parameters():
             param.requires_grad = False
             
-        # Fusion and classification layers
+        # Feature dimension processing
         self.image_fc = nn.Linear(2048, 512)  # ResNet50 features
         self.text_fc = nn.Linear(768, 512)    # DistilBERT features
-        self.classifier = nn.Sequential(
+        
+        # Gating mechanism
+        self.gate_layer = nn.Sequential(
             nn.Linear(1024, 512),  # 512 + 512 = 1024
             nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(512, 512),
+            nn.Sigmoid()
+        )
+        
+        # Final classifier
+        self.classifier = nn.Sequential(
+            nn.Linear(512, 256),
+            nn.ReLU(),
             nn.Dropout(0.5),
-            nn.Linear(512, num_classes)
+            nn.Linear(256, num_classes)
         )
 
     def forward(self, images, input_ids, attention_mask):
@@ -71,13 +82,18 @@ class ResNetMultimodalClassifier(nn.Module):
         text_features = self.text_drop(text_output[:,0])
         text_features = self.text_fc(text_features)
 
-        # Combine features
-        combined_features = torch.cat((img_features, text_features), dim=1)
-        output = self.classifier(combined_features)
+        # Calculate gate values
+        combined = torch.cat([img_features, text_features], dim=1)
+        gate = self.gate_layer(combined)
+
+        # Apply gated fusion
+        fused_features = gate * img_features + (1 - gate) * text_features
+        
+        # Classification
+        output = self.classifier(fused_features)
         return output
 
-# Rest of the code remains the same as improved_model_train.py
-# (ImprovedGarbageDataset and train_model function)
+
 
 # Custom Dataset class
 class ImprovedGarbageDataset(torch.utils.data.Dataset):
@@ -155,10 +171,11 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=10, device=
             
             if phase == "val" and epoch_acc > best_acc:
                 best_acc = epoch_acc
-                torch.save(model.state_dict(), "resnet_adamW_improved_model_best.pth")
+                torch.save(model.state_dict(), "gated_fusion_resnet_adamW_improved_model_best.pth")
 
     print(f"Best val Acc: {best_acc:.4f}")
     return model
+
 
 
 if __name__ == '__main__':
@@ -186,24 +203,13 @@ if __name__ == '__main__':
     }
     
     # Create model
-    model = ResNetMultimodalClassifier(num_classes=4).to(device)
+    model = GatedFusionClassifier(num_classes=4).to(device)
     
-    # Define loss function
+    # Define loss function and optimizer
     criterion = nn.CrossEntropyLoss()
-    
-    # Choose one of these optimizers:
-    
-    # Option 1: AdamW (Adam with weight decay)
     optimizer = AdamW(model.parameters(), 
                      lr=2e-5,
-                     weight_decay=0.01)  # L2 regularization
-    
-    # Option 2: SGD with momentum
-    # optimizer = SGD(model.parameters(),
-    #                lr=1e-3,  # Higher learning rate for SGD
-    #                momentum=0.9,
-    #                weight_decay=0.01,
-    #                nesterov=True)  # Use Nesterov momentum
+                     weight_decay=0.01)
     
     # Train the model
     model = train_model(model, dataloaders, criterion, optimizer, num_epochs=8, device=device) 

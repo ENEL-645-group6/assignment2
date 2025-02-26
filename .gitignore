@@ -6,3 +6,4 @@ tutorial_code/text_only_best_model.pth
 improved_model_best.pth
 resnet_improved_model_best.pth
 resnet_adamW_improved_model_best.pth
+*.pth
