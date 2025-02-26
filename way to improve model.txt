@@ -1,0 +1,29 @@
+1. Training Duration & Data:
+Increase number of epochs (currently only 3)
+Use larger batch size
+Implement learning rate scheduling
+Add more data augmentation for images
+2. Model Architecture:
+Unfreeze some layers of DistilBERT
+Try different image backbone models (ResNet, EfficientNet)
+Adjust fusion layer architecture
+Modify dropout rates
+Add batch normalization layers
+3.Text Processing:
+Increase max_len for text tokens (currently 24)
+Try different text preprocessing techniques
+Use full BERT instead of DistilBERT
+Fine-tune text model parameters
+4.Optimization:
+Try different learning rates
+Experiment with different optimizers (AdamW, SGD with momentum)
+Implement gradient clipping
+Use weight decay for regularization
+5.Class Imbalance:
+Use class weights in loss function
+Implement oversampling/undersampling
+Try focal loss instead of cross-entropy
+6.Ensemble Methods:
+Train multiple models with different seeds
+Create separate models for image and text, then ensemble
+Use cross-validation

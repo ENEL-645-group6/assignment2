@@ -1,0 +1,72 @@
+3 epoch
+
+Tutorial image model + BERT
+Accuracy on test set: 73.43%
+Accuracy for class 0: 53.96%
+Accuracy for class 1: 83.43%
+Accuracy for class 2: 86.61%
+Accuracy for class 3: 64.20%
+
+
+Tutorial image model + DistilBert
+
+Using device: mps
+Epoch 1/10
+train Loss: 0.8991 Acc: 0.6271
+val Loss: 0.6271 Acc: 0.7611
+Epoch 2/10
+train Loss: 0.6005 Acc: 0.7683
+val Loss: 0.5550 Acc: 0.7878
+Epoch 3/10
+train Loss: 0.5051 Acc: 0.8102
+val Loss: 0.5300 Acc: 0.7933
+Epoch 4/10
+train Loss: 0.4305 Acc: 0.8388
+val Loss: 0.5080 Acc: 0.8194
+Epoch 5/10
+train Loss: 0.3669 Acc: 0.8622
+val Loss: 0.5171 Acc: 0.8189
+Epoch 6/10
+train Loss: 0.3117 Acc: 0.8865
+val Loss: 0.5221 Acc: 0.8200
+Epoch 7/10
+train Loss: 0.2621 Acc: 0.9045
+val Loss: 0.5565 Acc: 0.8117
+Epoch 8/10
+train Loss: 0.2118 Acc: 0.9245
+val Loss: 0.5824 Acc: 0.8106
+Epoch 9/10
+train Loss: 0.1786 Acc: 0.9361
+val Loss: 0.6317 Acc: 0.8089
+Epoch 10/10
+train Loss: 0.1422 Acc: 0.9518
+val Loss: 0.6915 Acc: 0.8089
+Best val Acc: 0.8200
+
+MobileNetV2 + DistilBERT:
+Accuracy on test set: 76.08%
+Accuracy for class 0: 56.69%
+Accuracy for class 1: 84.07%
+Accuracy for class 2: 86.73%
+Accuracy for class 3: 71.71%
+
+ResNet + DistilBERT + Adam:
+Accuracy on test set: 78.41%
+Accuracy for class 0: 59.71%
+Accuracy for class 1: 82.32%
+Accuracy for class 2: 87.36%
+Accuracy for class 3: 80.28%
+
+ResNet + DistilBERT + SGD:
+Accuracy on test set: 77.04%
+Accuracy for class 0: 62.30%
+Accuracy for class 1: 83.70%
+Accuracy for class 2: 85.73%
+Accuracy for class 3: 72.42%
+
+ResNet + DistilBERT + AdamW:
+Accuracy on test set: 78.70%
+Accuracy for class 0: 60.58%
+Accuracy for class 1: 83.52%
+Accuracy for class 2: 92.49%
+Accuracy for class 3: 74.41%

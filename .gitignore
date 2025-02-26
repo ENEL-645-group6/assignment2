@@ -3,4 +3,6 @@ CVPR_2024_dataset_Train/
 CVPR_2024_dataset_Val/
 best_model.pth
 tutorial_code/text_only_best_model.pth
-
+improved_model_best.pth
+resnet_improved_model_best.pth
+resnet_adamW_improved_model_best.pth
