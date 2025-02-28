@@ -14,7 +14,7 @@ This project implements a multimodal deep learning model that classifies garbage
    Download the datasets from the provided remote server. The dataset size is approximately 15GB.
 
 2. **Run the Pipeline:**  
-   Execute the consolidated script `final.py` to train and evaluate the model. This script:
+   Execute the consolidated script `final.ipynb` to train and evaluate the model. This script:
    - Loads training, validation, and test data.
    - Trains the model, saving the best weights as `final_resnet_adamW_model.pth`.
    - Evaluates the model on the test set, reporting overall accuracy, per-class accuracy, and displaying a confusion matrix.
@@ -54,17 +54,17 @@ pip install torch torchvision transformers scikit-learn seaborn matplotlib
 ```
 ## Dataset Structure
 
-Place the following folders in the project root:
-- CVPR_2024_dataset_Train/
-- CVPR_2024_dataset_Val/
-- CVPR_2024_dataset_Test/
+Place the following in the project root:
+- CVPR_2024_dataset_Train
+- CVPR_2024_dataset_Val
+- CVPR_2024_dataset_Test
 
 ## Usage
 1. **Update Dataset Paths**:
-Modify the dataset paths in final.py to point to your local or remote dataset location.
+Modify the dataset paths in final.ipynb to point to your local or remote dataset location.
 2.	**Run the Script**:
 Execute the following command to start the training and evaluation process:
-```python final.py```
+```python final.ipynb```
 The script automatically detects and utilizes GPU, MPS (for Apple Silicon), or CPU based on availability.
 
 
@@ -82,7 +82,7 @@ Copy final.py and image_and_text_dataset.py to TALC.
 In final.py, update the dataset path to:
 ```/work/TALC/enel645_2025w/garbage_data```
 3.	**Create SLURM Job Files**:
-Prepare a .slurm file to run final.py.
+Prepare a .slurm file to run final.ipynb.
 4.	**Execute**:
 Run the job to train the model and generate results with final_resnet_adamW_model.pth.
 
