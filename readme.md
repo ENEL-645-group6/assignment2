@@ -6,7 +6,7 @@ This project implements a multimodal deep learning model that classifies garbage
 - Rick Zhang
 - Bo Zheng Ma
 - Cory Wu
-- Warissa Khaophong 
+- Warisa Khaophong 
 
 ## General Workflow
 
