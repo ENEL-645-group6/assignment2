@@ -1,98 +1,105 @@
 # Garbage Classification with Image and Text Features
 
+This project implements a multimodal deep learning model that classifies garbage images by combining visual features with textual information extracted from image filenames. In this updated version, the model uses ResNet50 for image feature extraction and DistilBERT for processing textual data. A custom fusion network integrates both modalities to perform classification.
+
+## Team members
+- Rick Zhang
+- Bo Zheng Ma
+- Cory Wu
+- Warissa Khaophong 
+
 ## General Workflow
-Get dataset → Run ENEL645_group6_a2_garbage_model_train.py to get best_model.pth → Run ENEL645_group6_a2_garbage_model_test.py to get the results
 
-## Running Locally
+1. **Obtain the Dataset:**  
+   Download the datasets from the provided remote server. The dataset size is approximately 15GB.
 
-The code is designed to automatically check for GPU availability and use it if available. Otherwise, it will use MPS (Apple Silicon) if available. Otherwise, it will use CPU.
+2. **Run the Pipeline:**  
+   Execute the consolidated script `final.py` to train and evaluate the model. This script:
+   - Loads training, validation, and test data.
+   - Trains the model, saving the best weights as `final_resnet_adamW_model.pth`.
+   - Evaluates the model on the test set, reporting overall accuracy, per-class accuracy, and displaying a confusion matrix.
 
-1. Clone the repository
-2. Download the datasets and place them in the project root
-   - Dataset location on TALC: `/work/TALC/enel645_2025w/garbage_data`
-   - Dataset size is about 15GB
-3. Update the dataset path in `ENEL645_group6_a2_garbage_model_train.py`
-4. Run `ENEL645_group6_a2_garbage_model_train.py` to get best_model.pth
-5. Run `ENEL645_group6_a2_garbage_model_test.py` to get the results
+## Directory Structure
+
+Your working directory should resemble the following:
 
 ### Expected Directory Structure
 ```
 .
+├── work file      (Previous work we've done)
 ├── CVPR_2024_dataset_Test
 ├── CVPR_2024_dataset_Train
 ├── CVPR_2024_dataset_Val
-├── ENEL645_group6_a2_garbage_model_test.py
-├── ENEL645_group6_a2_garbage_model_train.py
-├── __pycache__
-└── garbage_ML_test.py
+├── final.py       (Final file to run)
+├── image_and_text_dataset.py      (Extracts textual information from filenames and tokenizes the text with DistilBERT)
+├── pycache
+└── final_resnet_adamW_model.pth    (Generated after running final.py)
 ```
+## Installation and Dependencies
 
-## Running on TALC
-1. Copy code from `ENEL645_group6_a2_garbage_model_train.py` and `ENEL645_group6_a2_garbage_model_test.py` to TALC
-2. Update the dataset path in `ENEL645_group6_a2_garbage_model_train.py`
-   - Dataset location on TALC: `/work/TALC/enel645_2025w/garbage_data`
-3. Create `.slurm` file to run the `ENEL645_group6_a2_garbage_model_train.py`
-4. Run `ENEL645_group6_a2_garbage_model_train.py` to get best_model.pth
-5. Create `.slurm` file to run the `ENEL645_group6_a2_garbage_model_test.py`
-6. Run `ENEL645_group6_a2_garbage_model_test.py` to get the results
-
-A multimodal deep learning model that classifies garbage images using both visual features and textual information from filenames.
-
-## Prerequisites
+Ensure you have the following prerequisites installed:
 
 - Python 3.x
 - PyTorch
 - Transformers
 - torchvision
+- scikit-learn
+- seaborn
+- matplotlib
 
-Install dependencies:
+Install the required packages using:
 
 ```bash
-pip install torch torchvision transformers
+pip install torch torchvision transformers scikit-learn seaborn matplotlib
 ```
-
 ## Dataset Structure
 
-Download the following datasets and place them in the project root:
-- `CVPR_2024_dataset_Train/`
-- `CVPR_2024_dataset_Val/`
-- `CVPR_2024_dataset_Test/`
-
-Your working directory should look like this:
-```
-.
-├── CVPR_2024_dataset_Test
-├── CVPR_2024_dataset_Train
-├── CVPR_2024_dataset_Val
-├── ENEL645_group6_a2_garbage_model_test.py
-├── ENEL645_group6_a2_garbage_model_train.py
-├── __pycache__
-├── best_model.pth
-└── garbage_ML_test.py
-```
+Place the following folders in the project root:
+- CVPR_2024_dataset_Train/
+- CVPR_2024_dataset_Val/
+- CVPR_2024_dataset_Test/
 
 ## Usage
+1. **Update Dataset Paths**:
+Modify the dataset paths in final.py to point to your local or remote dataset location.
+2.	**Run the Script**:
+Execute the following command to start the training and evaluation process:
+```python final.py```
+The script automatically detects and utilizes GPU, MPS (for Apple Silicon), or CPU based on availability.
 
-1. Train the model:
-
-```bash
-python ENEL645_group6_a2_garbage_model_train.py
-```
-
-2. Test the model:
-
-```bash
-python ENEL645_group6_a2_garbage_model_test.py
-```
 
 ## Model Details
+- Image Features: ResNet50
+- Text Features: DistilBERT (text is extracted from image filenames)
+- Fusion Layers: Custom fully connected layers fuse a 512-dimensional image representation with a 512-dimensional text representation for final classification.
+- Training: Uses the AdamW optimizer (learning rate = 2e-5, weight decay = 0.01) over 8 epochs.
+- Evaluation: Computes overall accuracy, per-class accuracy, and displays a confusion matrix.
 
-- Image Features: MobileNetV2
-- Text Features: BERT
-- Combined with custom fusion layers
-- Supports CUDA (GPU), MPS (Apple Silicon), and CPU
+## Running on TALC
+1.	**Transfer Files**:
+Copy final.py and image_and_text_dataset.py to TALC.
+2.	**Update Dataset Path**:
+In final.py, update the dataset path to:
+```/work/TALC/enel645_2025w/garbage_data```
+3.	**Create SLURM Job Files**:
+Prepare a .slurm file to run final.py.
+4.	**Execute**:
+Run the job to train the model and generate results with final_resnet_adamW_model.pth.
 
-## Note
+## Results
+After training and evaluation on the test set, the model achieved an overall accuracy of approximately 78.00%. Detailed per-class performance is as follows:
+- Black: 58.56%
+- Blue: 82.60%
+- Green: 90.24%
+- TTR: 76.53%
 
-Large dataset files and model weights are not included in the repository. Please obtain them from the provided remote server.
+![Confusion Matrix](confusion_matrix.png)
+
+## Additional Notes
+- Dataset and Weights:
+The large dataset files and pretrained model weights are not included in the repository. Please obtain them from the provided remote server.
+- Dataset Module:
+The file image_and_text_dataset.py defines a custom PyTorch dataset. It loads images using torchvision.datasets.ImageFolder and processes filenames to extract textual information via the DistilBERT tokenizer. Each sample includes the image, tokenized text (input IDs and attention mask), and the label.
+- Pipeline Integration:
+The script final.py consolidates both training and testing routines. It outputs evaluation metrics including overall test accuracy, per-class accuracy, and a visual confusion matrix.
 
