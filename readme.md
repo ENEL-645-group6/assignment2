@@ -27,10 +27,11 @@ Your working directory should resemble the following:
 ```
 .
 ├── work file      (Previous work we've done)
+├── talc           (code that runs on TALC)
 ├── CVPR_2024_dataset_Test
 ├── CVPR_2024_dataset_Train
 ├── CVPR_2024_dataset_Val
-├── final.py       (Final file to run)
+├── group6_assignment2_final.py       (Final file to run)
 ├── image_and_text_dataset.py      (Extracts textual information from filenames and tokenizes the text with DistilBERT)
 ├── pycache
 └── final_resnet_adamW_model.pth    (Generated after running final.py)
@@ -77,12 +78,12 @@ The script automatically detects and utilizes GPU, MPS (for Apple Silicon), or C
 
 ## Running on TALC
 1.	**Transfer Files**:
-Copy final.py and image_and_text_dataset.py to TALC.
+Copy group6_assignment2_final.py (Not ipynb) to TALC.
 2.	**Update Dataset Path**:
-In final.py, update the dataset path to:
+In group6_assignment2_final.py, update the dataset path to:
 ```/work/TALC/enel645_2025w/garbage_data```
 3.	**Create SLURM Job Files**:
-Prepare a .slurm file to run final.ipynb.
+Prepare a .slurm file to run group6_assignment2_final.py.
 4.	**Execute**:
 Run the job to train the model and generate results with final_resnet_adamW_model.pth.
 
