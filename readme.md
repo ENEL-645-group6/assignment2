@@ -14,7 +14,7 @@ This project implements a multimodal deep learning model that classifies garbage
    Download the datasets from the provided remote server. The dataset size is approximately 15GB.
 
 2. **Run the Pipeline:**  
-   Execute the consolidated script `final.ipynb` to train and evaluate the model. This script:
+   Execute the consolidated script `group6_assignment2_final.py` to train and evaluate the model. This script:
    - Loads training, validation, and test data.
    - Trains the model, saving the best weights as `final_resnet_adamW_model.pth`.
    - Evaluates the model on the test set, reporting overall accuracy, per-class accuracy, and displaying a confusion matrix.
@@ -34,7 +34,7 @@ Your working directory should resemble the following:
 ├── group6_assignment2_final.py       (Final file to run)
 ├── image_and_text_dataset.py      (Extracts textual information from filenames and tokenizes the text with DistilBERT)
 ├── pycache
-└── final_resnet_adamW_model.pth    (Generated after running final.py)
+└── final_resnet_adamW_model.pth    (Generated after running group6_assignment2_final.py)
 ```
 ## Installation and Dependencies
 
@@ -62,10 +62,10 @@ Place the following in the project root:
 
 ## Usage
 1. **Update Dataset Paths**:
-Modify the dataset paths in final.ipynb to point to your local or remote dataset location.
+Modify the dataset paths in group6_assignment2_final.py to point to your local or remote dataset location.
 2.	**Run the Script**:
 Execute the following command to start the training and evaluation process:
-```python final.ipynb```
+```python group6_assignment2_final.py```
 The script automatically detects and utilizes GPU, MPS (for Apple Silicon), or CPU based on availability.
 
 
@@ -102,5 +102,5 @@ The large dataset files and pretrained model weights are not included in the rep
 - Dataset Module:
 The file image_and_text_dataset.py defines a custom PyTorch dataset. It loads images using torchvision.datasets.ImageFolder and processes filenames to extract textual information via the DistilBERT tokenizer. Each sample includes the image, tokenized text (input IDs and attention mask), and the label.
 - Pipeline Integration:
-The script final.py consolidates both training and testing routines. It outputs evaluation metrics including overall test accuracy, per-class accuracy, and a visual confusion matrix.
+The script group6_assignment2_final.py consolidates both training and testing routines. It outputs evaluation metrics including overall test accuracy, per-class accuracy, and a visual confusion matrix.
 
