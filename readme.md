@@ -14,7 +14,7 @@ This project implements a multimodal deep learning model that classifies garbage
    Download the datasets from the provided remote server. The dataset size is approximately 15GB.
 
 2. **Run the Pipeline:**  
-   Execute the consolidated script `group6_assignment2_final.py` to train and evaluate the model. This script:
+   Execute the consolidated script `group6_assignment2_final.ipynb` to train and evaluate the model. This script:
    - Loads training, validation, and test data.
    - Trains the model, saving the best weights as `final_resnet_adamW_model.pth`.
    - Evaluates the model on the test set, reporting overall accuracy, per-class accuracy, and displaying a confusion matrix.
@@ -31,10 +31,10 @@ Your working directory should resemble the following:
 ├── CVPR_2024_dataset_Test
 ├── CVPR_2024_dataset_Train
 ├── CVPR_2024_dataset_Val
-├── group6_assignment2_final.py       (Final file to run)
+├── group6_assignment2_final.ipynb       (Final file to run)
 ├── image_and_text_dataset.py      (Extracts textual information from filenames and tokenizes the text with DistilBERT)
 ├── pycache
-└── final_resnet_adamW_model.pth    (Generated after running group6_assignment2_final.py)
+└── final_resnet_adamW_model.pth    (Generated after running group6_assignment2_final.ipynb)
 ```
 ## Installation and Dependencies
 
@@ -62,10 +62,10 @@ Place the following in the project root:
 
 ## Usage
 1. **Update Dataset Paths**:
-Modify the dataset paths in group6_assignment2_final.py to point to your local or remote dataset location.
+Modify the dataset paths in group6_assignment2_final.ipynb to point to your local or remote dataset location.
 2.	**Run the Script**:
 Execute the following command to start the training and evaluation process:
-```python group6_assignment2_final.py```
+```python group6_assignment2_final.ipynb```
 The script automatically detects and utilizes GPU, MPS (for Apple Silicon), or CPU based on availability.
 
 
